@@ -1,7 +1,7 @@
 ;*********************************************************
 ; ASCII-Lines für Z1013 ala MS Screensaver
 ; Quelle: FADEN.MAC Mario Leubner (KC 85/4)
-; Anpassung an Hübler-Grafik-PC V. Pohlers 07.05.2012
+; Anpassung an Hübler-Grafik-MC V. Pohlers 07.05.2012
 ; Anpassung an AC1 H. Strugalla 02.11.2026
 ;*********************************************************
 ; 'Grafik' wird aus ASCII-Zeichen '*' generiert. 
