@@ -8,7 +8,7 @@
 ; LINE mit 8-connected Bresenham f. schmale Linien.
 ;
 ; Start: I (nur beim Ur-AC1 notwendig) 
-;	 J 1880
+;        J 1880
 ; Tasten: 
 ;       + -> mehr Linien
 ;       - -> weniger Linien
@@ -21,24 +21,24 @@
 
         org     1880h
                 
-TOP:   	ld	a,55h
-	ld	(1400h),a
-	ld	a,(1400h)
-	cp	a,55h
-	jr	nz, SCR16x64
-	
-SCR32x64:	
+TOP:    ld      a,55h
+        ld      (1400h),a
+        ld      a,(1400h)
+        cp      a,55h
+        jr      nz, SCR16x64
+        
+SCR32x64:       
 
-	ld	hl,0	; 
-	ld	(patch1),hl
-	ld	(patch1+2),hl
-	
-	ld	a,7
-	ld	(patch2),a	;
-	
+        ld      hl,0            
+        ld      (patch1),hl
+        ld      (patch1+2),hl
+        
+        ld      a,7
+        ld      (patch2),a
+        
 SCR16x64:
-	
-	JP	FADEN1
+        
+        JP      FADEN1
         
 ;
 ; Erzeugung einer Zufallszahl
@@ -260,9 +260,9 @@ CALC3:  LD      (DE),A
 ;
 ; Tastaturabfrage/Auswertung
 ;
-	CALL	07FAH		; CSTS+CI
+        CALL    07FAH           ; CSTS+CI
         JP      Z,FADEN         ; keine Taste
-	res	7,a
+        res     7,a
         CP      '+'
         JR      Z,PLUS          ; (+) -> mehr Linien
         CP      '-'
@@ -272,7 +272,7 @@ CALC3:  LD      (DE),A
         JR      Z,HSWI          ; (H) -> hor. Spiegelung ein/aus
         CP      'V'
         JR      Z,VSWI          ; (V) -> vert. Spiegelung ein/aus
-        JP	0               ; jede andere Taste bricht ab!
+        JP      0               ; jede andere Taste bricht ab!
 ;
 ; zwei Linien mehr
 ;
@@ -324,10 +324,10 @@ LINE:
         srl     h       ; y2
         srl     d       ; y1
         endm
-		; y/2	; nicht für SCR32x64 ausführen
-patch1: srl     h       ; y2	 
+                ; y/2   ; nicht für SCR32x64 ausführen
+patch1: srl     h       ; y2     
         srl     d       ; y1
-	
+        
         rept 2  ; x/4
         srl     l       ; x2
         srl     e       ; x1
@@ -384,8 +384,8 @@ cls:
         ld      hl, 01000h
         ld      (hl), ' '
         ld      de, 01001h
-	db	06h		; op code ld b,...
-patch2:	db	03h		; 3 (16x64) oder 7 (32x64)
+        db      06h             ; op code ld b,...
+patch2: db      03h             ; 3 (16x64) oder 7 (32x64)
         ld      c, 0FFh
         ldir
         ret
