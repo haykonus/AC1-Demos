@@ -413,7 +413,7 @@ setpoint:
                         
         add     hl,de   ; Y*64 + X      
         
-                        ; hl = 0000-03FF
+                        ; hl = 0000-03FF(07FF)
         ld      a,h
         or      a,010h
         ld      h,a
