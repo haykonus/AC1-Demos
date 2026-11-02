@@ -1,5 +1,5 @@
 ;*********************************************************
-; ASCII-Lines für Z1013 ala MS Screensaver
+; ASCII-Lines für AC1 ala MS Screensaver
 ; Quelle: FADEN.MAC Mario Leubner (KC 85/4)
 ; Anpassung an Hübler-Grafik-MC V. Pohlers 07.05.2012
 ; Anpassung an AC1 H. Strugalla 02.11.2026
@@ -391,7 +391,7 @@ patch2: db      03h             ; 3 (16x64) oder 7 (32x64)
         ret
         
 ; ------------------------------------------------------------
-; Setzt/löscht Punkt (32x32)
+; Setzt/löscht Punkt (16/32x64)
 ; BWS = 0EC00h
 ;       
 ; In:   H = Y,  L = X
