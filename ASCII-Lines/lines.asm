@@ -29,7 +29,7 @@ TOP:    ld      a,55h
         
 SCR32x64:       
 
-        ld      hl,0            
+        ld      hl,0    
         ld      (patch1),hl
         ld      (patch1+2),hl
         
@@ -405,7 +405,7 @@ setpoint:
         ld      e,l
         ld      d,0
                         
-        ld      l,d             ; Y*64
+        ld      l,d             ; Y*64  
         rept    2
         srl     h
         rr      l
