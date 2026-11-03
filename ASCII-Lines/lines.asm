@@ -22,10 +22,10 @@
         org     1880h
                 
 TOP:    ld      a,55h
-        ld      (1400h),a	; Test auf 2K BWS
+        ld      (1400h),a       ; Test auf 2K BWS
         ld      a,(1400h)
         cp      a,55h
-        jr      nz, SCR16x64	; 1K BWS
+        jr      nz, SCR16x64    ; 1K BWS
         
 SCR32x64:       
 
@@ -45,7 +45,7 @@ SCR16x64:
 ; (im Bereich von 3 bis 15)
 ;
 RND:    EXX
-        LD      A,0     	; Zwischenablage
+        LD      A,0             ; Zwischenablage
 ZAHL    EQU     $-1
         INC     A
         LD      D,A
@@ -54,7 +54,7 @@ ZAHL    EQU     $-1
         ADD     A,A
         ADD     A,A
         ADD     A,A
-        SUB     D       	; Zahl*15
+        SUB     D               ; Zahl*15
         ;
         ADD     A,A
         LD      L,A
@@ -317,20 +317,20 @@ SET2:   LD      (MIRR),A
 ;
 
 LINE:           
-        ld      h,b     	; Y2
-        ld      l,c     	; X2
+        ld      h,b             ; Y2
+        ld      l,c             ; X2
         
         rept 3  ; Y/8
-        srl     h       	; Y2
-        srl     d       	; Y1
+        srl     h               ; Y2
+        srl     d               ; Y1
         endm
-                ; Y/2   	; nicht für SCR32x64 ausführen
-patch1: srl     h       	; Y2     
-        srl     d       	; Y1
+                ; Y/2           ; nicht für SCR32x64 ausführen
+patch1: srl     h               ; Y2     
+        srl     d               ; Y1
         
         rept 2  ; X/4
-        srl     l       	; X2
-        srl     e       	; X1
+        srl     l               ; X2
+        srl     e               ; X1
         endm
         
         call    draw
@@ -371,11 +371,11 @@ SIZE1   EQU     $-TOP           ; Groesse Programmsegment
 
 ; --- nicht zu initialisierende Daten ---
 
-PTRX:   DS      12      	; Vergleichswerte Ringpufferzeiger
+PTRX:   DS      12              ; Vergleichswerte Ringpufferzeiger
 
-MEM:    DS      32*4    	; Koordinatenspeicher (32 Linien)
+MEM:    DS      32*4            ; Koordinatenspeicher (32 Linien)
 
-SIZE2   EQU     $-PTRX  	; Groesse Datensegment
+SIZE2   EQU     $-PTRX          ; Groesse Datensegment
 
 ; ------------------------------------------------------------
 ; Löscht Bildschirm
@@ -405,21 +405,21 @@ setpoint:
         ld      e,l
         ld      d,0
                         
-        ld      l,d     	; Y*64
+        ld      l,d             ; Y*64
         rept    2
         srl     h
         rr      l
         endm
                         
-        add     hl,de   	; Y*64 + X      
+        add     hl,de           ; Y*64 + X      
         
-				; HL = 0000-03FF(07FF)
+                                ; HL = 0000-03FF(07FF)
         ld      a,h
         or      a,010h
         ld      h,a
         
-				; HL = 1000-13FF(17FF)
-        db      36h     	; Opcode: LD (HL),...
+                                ; HL = 1000-13FF(17FF)
+        db      36h             ; Opcode: LD (HL),...
 setchar:
         db      '*'     
 
